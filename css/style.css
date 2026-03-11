@@ -1,0 +1,327 @@
+/*Sets font, color, and background for the whole site. Resets the margin and padding for mobile first display*/
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: Arial, Verdana, sans-serif; /* Ensures that there's backup fonts*/
+  color: #000000;
+  background: #ffffff;
+}
+
+
+/* Dark Mode */
+/*Utilized https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-color-scheme#:~:text=to%20see%20ads?-,Embedded%20elements,be%20overridden%20to%20dark%20colors and Chatgpt to learn how to format my prefer color scheme methodology in my code and understand how to use "!important" to override the current styling and priorize the color mode (in addition to this: https://www.w3schools.com/css/css_important.asp) */
+@media (prefers-color-scheme: dark) {
+  body {
+    background: #191b1c !important;
+    color: #ffffff !important;
+  }
+  
+  header, footer{
+    color: #ffffff !important;
+    border-color: #ffffff !important;
+  }
+
+  h1, p{
+    color: #000000 !important;
+  }
+
+  .card {
+    background: #2b2b2b !important;
+    color: #ffffff !important;
+  }
+
+  .card h2 {
+    color: #ffffff !important;
+  }
+
+  .card p{
+    color: #ffffff !important;
+  }
+
+  nav a{
+    color: #ffffff !important;
+  }
+  nav a.active {
+    color: #000000 !important;
+  }
+
+  .card:nth-child(even) {
+    background: #313334 !important;
+  }    
+  }
+
+
+/* High Contrast */
+/*Utilized https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-contrast#:~:text=HTML,User%20preferences and Chatgpt to learn how to format my prefer contrast methodology in my code*/
+@media (prefers-contrast: more) {
+  body, header, .card, footer {
+    background: #ffffff !important;
+    color: #000000 !important;
+    border: 2px solid #000000 !important;
+ }
+
+ a:focus{
+   outline: 2px solid #000000 !important;
+   color: #000000 !important;
+ }
+
+ a:hover {
+  outline: 2px solid #000000 !important;
+  color: #000000 !important;
+}
+
+  nav a {
+    color: #000000 !important;
+    background: #ffffff !important;
+    border: 1px solid #000000 !important;
+ }
+}
+
+
+/* Reduced motion turns off animations and transitions for accessibility accomodations */
+/*Utilized https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/At-rules/@media/prefers-reduced-motion to understand */
+@media (prefers-reduced-motion: reduce) {
+ * {
+    animation: none;
+    transition: none;
+ }
+}
+
+
+/* Header */
+header {
+  background: #7cbde7; /*Primary*/
+  padding: 20px;
+  text-align: center;
+  border-bottom: 1px solid #fff;
+  position: sticky;
+  top: 0; 
+  z-index: 100; /*Ensure the header is priority within the positioning order*/
+  animation: fadeIn 0.8s;
+}
+/* Header section will fade in via animation */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Header Text */
+header h1 {
+  margin: 0;
+  font-size: 40px;
+  color: #000000;
+}
+header p {
+  margin: 15px;
+  font-size: 20px;
+  color: #000000;
+}
+
+
+/* Nav */
+nav {
+  margin-top: 15px;
+}
+
+.site-title-link {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Grade & Gallery Nav */
+nav a {
+  display: inline-block;
+  background: #000000;
+  color: #7cbde7;
+  text-decoration: none; /*removes underline from link*/
+  padding: 6px 18px;
+  border-radius: 20px;
+  margin: 2px;
+  font-size: 15px;
+  border: 2px solid #111111;
+  transition: all .5s;
+}
+/*Nav button state when selected*/
+nav a.active {
+  background: #7cbde7;
+  color: #000000;
+}
+
+/* Hover state of nav button */
+nav a:hover {
+  background: #ffffff;
+  color: #000000;
+ }
+
+/* Outline of the tab (accessible) navigation */
+nav a:focus-visible {
+  outline: 5px solid #ffffff;
+/*Places the outline outside of the border of the focused state - learned this via https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/outline-offset#:~:text=The%20CSS%20%60outline%2Doffset%60%20property%20sets%20the%20amount,%60initial%60%20*%20%60revert%60%20*%20%60revert%2Dlayer%60%20*%20%60unset%60*/
+  outline-offset: 2px;
+}
+
+
+/* Main & Cards */
+main {
+  padding: 40px;
+}
+
+/* Card Layout & Colors */
+.card {
+  background: #ffffff;
+  border-radius: 20px;
+ /*Spacing between cards*/ 
+  margin-bottom: 15px;
+  padding: 20px;
+  text-align: center;
+  border: 5px solid #7cbde7;
+  animation: slideUp 0.8s;
+}
+ @keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(25px); /*Start 25px below the original positioning*/
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0); /*End at the original position*/
+  }
+}
+
+/* Alternating background to add depth to main section*/
+.card:nth-child(even) {
+  background: #e0f3fd;
+}
+
+
+/* Card Title */
+.card h2 {
+  font-size: 20px;
+  margin: 10px 0px;
+  color: #000000;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+
+/* Card Image */
+.card img {
+  width: 125px;
+  height: 125px;
+  object-fit: cover; /*Learned via https://www.w3schools.com/css/css3_object-fit.asp*/
+  border-radius: 100%;
+  border: 3px solid #7cbde7;
+  margin-bottom: 10px;
+}
+
+
+/* Card Details */
+.card p {
+  margin: 10px;
+  font-size: 15px;
+}
+
+
+/* Meet Results */
+.card a {
+  padding: 5px;
+  border-radius: 10px;
+  background: #7cbde7;
+  color: #000000;
+  font-size: 15px;
+  text-decoration: none;
+  border: 2px solid black;
+}
+
+/* Hover state of nav button */
+.card a:hover {
+  background: #ffffff;
+  color: #000000;
+  text-decoration: underline;
+  outline: 2px solid #000000;
+}
+
+/* Outline of the tab (accessible) navigation */
+.card a:focus-visible {
+  background: #ffffff;
+  color: #000000;
+  text-decoration: underline;
+  outline: 2px solid #000000;
+ }
+
+
+/* Footer */
+footer {
+  text-align: center;
+  background: #7cbde7;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #00356b;
+  border-top: 2px solid #7cbde7;
+}
+/*Footer Link*/
+footer a {
+  color: #000000;
+  text-decoration: underline;
+}
+/*Outline of the tab (accessible) navigation */
+footer a:focus-visible {
+  outline: 2px solid #fff;
+}
+
+
+/* Responsive font sizing techniques - learned via https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Values/clamp*/
+/* clamp (min, preferred, max) */
+body {
+  font-size: clamp(16px, 2vw, 20px);
+}
+
+/*Gallery Grid*/
+.gallery-grid {
+  display: grid;
+  grid-template-columns: 1fr;   /* Ensures 1 image per row and that it takes up 100% of the row*/
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+  animation: slideUp 0.8s;
+}
+
+.gallery-grid img {
+  width: 95%;
+  border-radius: 50px;
+  object-fit: cover;
+  transition: transform 0.3s;
+}
+
+/*Outline & Slightly Enlarge Image on Hover. Learned via https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform*/
+.gallery-grid img:hover {
+  outline: 2px solid #7cbde7;
+  transform: scale(1.02);
+}
+
+/*Learned via https://developer.mozilla.org/en-US/docs/Web/CSS/Reference/Properties/transform*/
+.gallery-grid img:focus {
+  transform: scale(1.02);
+  outline: 3px solid #ffffff;
+}
+
+/*Utilized Chatgpt to understand how to add a route to the site header. Prompt: how to create a site title that links to a page? */
+.site-title-link:hover h1{
+  text-decoration: underline solid #000000;
+  /* Thickens the underline for readability */
+  text-decoration-thickness: 3px;
+  /* Creates gap between bottom of text and the underline */
+  text-underline-offset: 5px;
+  transition: text-decoration 0.3s;
+}
+
+/*Utilized Chatgpt to understand how to add a route to the site header. Prompt: how to create a site title that links to a page? */
+.site-title-link:focus h1 {
+  text-decoration: underline solid #000000;
+  /* Thickens the underline for readability */
+  text-decoration-thickness: 3px;
+  /* Creates gap between bottom of text and the underline */
+  text-underline-offset: 5px;
+  transition: text-decoration 0.3s;
+}
